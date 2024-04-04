@@ -8,22 +8,25 @@ class ShoesController < ApplicationController
   end
 
   def new
-    
+    # raise
+    @shoe = Shoe.new
   end
 
-  def nike
-    @shoes = Shoe.where(name: "nike")
+  def create
+    # raise
+    # @shoe = current_user.shoes.build(shoes_params)
+    @shoe = Shoe.new(shoe_params)
+    @shoe.user = current_user
+    if @shoe.save
+      redirect_to shoes_path
+    else
+      render :new
+    end
   end
 
-  def adidas
-    @shoes = Shoe.where(name: "adidas")
-  end
+  private
 
-  def reebok
-    @shoes = Shoe.where(name: "reebok")
-  end
-
-  def newbalance
-    @shoes = Shoe.where(name: "newbalance")
+  def shoe_params
+    params.require(:shoe).permit(:name, :description, :price)
   end
 end

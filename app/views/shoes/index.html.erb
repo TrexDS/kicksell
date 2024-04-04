@@ -1,3 +1,9 @@
-<p> hello from index page </p>
+<h1>Welcome to our shoes marketplace, pick your favourite one here</h1>
 
-<>
+<ul>
+  <% @shoes.each do |shoe| %>
+  <li>
+    <%= link_to shoe.name, shoe_path(shoe) %>
+  </li>
+  <% end %>
+</ul>

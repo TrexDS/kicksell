@@ -1,0 +1,8 @@
+<h1>Order Summary for <%= @shoe.name %>:</h1>
+<ul>
+<% @orders.each do |order| %>
+  <% if order.shoe_id == @shoe.id %>
+  <li>Order ID: <%= order.id %> from <%= current_user.first_name %></li>
+  <% end %>
+<% end %>
+</ul>
