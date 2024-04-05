@@ -3,6 +3,6 @@
   <li>Name: <%= @shoe.name %></li>
   <li>Description: <%= @shoe.description %></li>
   <li>Price: <%= @shoe.price %> AUD</li>
-  <li>Owner: <%= current_user.first_name %></li>
+  <li>Owner: <%= @user.first.first_name%></li>
 </ul>
 <%= link_to "Do you want to rent them? Click here", new_shoe_order_path(@shoe) %>

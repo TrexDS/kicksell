@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :order_list, only: [:show, :edit, :update]
   def index
-    # raise
     @orders = Order.all
     @shoe = Shoe.find(params[:shoe_id])
   end
@@ -35,6 +34,7 @@ class OrdersController < ApplicationController
     @order.update(order_params)
     redirect_to shoe_order_path(@order)
   end
+
   private
 
   def order_params

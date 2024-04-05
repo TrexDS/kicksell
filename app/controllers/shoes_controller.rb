@@ -5,6 +5,8 @@ class ShoesController < ApplicationController
 
   def show
     @shoe = Shoe.find(params[:id])
+    @user = User.where(id: @shoe.user_id)
+    # raise
   end
 
   def new
