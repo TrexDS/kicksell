@@ -1,10 +1,13 @@
 class ShoesController < ApplicationController
+  before_action :shoe_list, only: [:show, :edit, :update, :destroy]
+
   def index
+    # raise
     @shoes = Shoe.all
   end
 
   def show
-    @shoe = Shoe.find(params[:id])
+    # @shoe = Shoe.find(params[:id])
     @user = User.where(id: @shoe.user_id)
     # raise
   end
@@ -26,9 +29,28 @@ class ShoesController < ApplicationController
     end
   end
 
+
+  def edit
+
+  end
+
+  def update
+    @shoe.update(shoe_params)
+    redirect_to shoe_path(@shoe)
+  end
+
+  def destroy
+    @shoe.destroy
+    redirect_to shoes_path, status: :see_other
+  end
+
   private
 
   def shoe_params
     params.require(:shoe).permit(:name, :description, :price)
+  end
+
+  def shoe_list
+    @shoe = Shoe.find(params[:id])
   end
 end
