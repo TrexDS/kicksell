@@ -10,25 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_02_092832) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_04_113040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "order_tags", force: :cascade do |t|
-    t.bigint "order_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "shoe_id", null: false
-    t.index ["order_id"], name: "index_order_tags_on_order_id"
-    t.index ["shoe_id"], name: "index_order_tags_on_shoe_id"
-  end
-
   create_table "orders", force: :cascade do |t|
+    t.bigint "shoe_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price"
-    t.boolean "completed"
+    t.index ["shoe_id"], name: "index_orders_on_shoe_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -36,10 +27,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_092832) do
     t.string "name"
     t.string "description"
     t.integer "price"
-    t.string "availability"
-    t.string "brand"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shoes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_02_092832) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "order_tags", "orders"
-  add_foreign_key "order_tags", "shoes"
+  add_foreign_key "orders", "shoes"
   add_foreign_key "orders", "users"
+  add_foreign_key "shoes", "users"
 end
