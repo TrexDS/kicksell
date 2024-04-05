@@ -1,5 +1,6 @@
 class ShoesController < ApplicationController
-  before_action :shoe_list, only: [:show, :edit]
+  before_action :shoe_list, only: [:show, :edit, :update, :destroy]
+
   def index
     # raise
     @shoes = Shoe.all
@@ -26,18 +27,21 @@ class ShoesController < ApplicationController
     else
       render :new
     end
+  end
 
-    def edit
-      raise
-    end
 
-    def update
-      raise
-      @shoe = Shoe.find(params[:id])
-      @shoe.update(shoe_params)
-      redirect_to shoe_path(@shoe)
-    end
+  def edit
 
+  end
+
+  def update
+    @shoe.update(shoe_params)
+    redirect_to shoe_path(@shoe)
+  end
+
+  def destroy
+    @shoe.destroy
+    redirect_to shoes_path, status: :see_other
   end
 
   private

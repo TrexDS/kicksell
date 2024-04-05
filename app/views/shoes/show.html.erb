@@ -5,4 +5,14 @@
   <li>Price: <%= @shoe.price %> AUD</li>
   <li>Owner: <%= @user.first.first_name%></li>
 </ul>
-<%= link_to "Do you want to rent them? Click here", new_shoe_order_path(@shoe) %>
+
+<% if @shoe.user_id == current_user.id %>
+  <%= link_to "Edit shoes details", edit_shoe_path(@shoe) %>
+  <br>
+  <%= link_to "Delete shoes",
+  shoe_path(@shoe),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+<% else %>
+  <%= link_to "Do you want to rent them? Click here", new_shoe_order_path(@shoe) %>
+<% end %>
