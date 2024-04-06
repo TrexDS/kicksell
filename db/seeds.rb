@@ -9,7 +9,7 @@
 #   end
 User.create(first_name: "Dan", last_name: "Nguyen", password: "123456", email: "dan.ngchem@gmail.com")
 User.create(first_name: "Solo", last_name: "Tohi", password: "123456", email: "solotohi@gmail.com")
-
+User.create(first_name: "Doris", last_name: "Xu", password: "123456", email: "dorisxjt@gmail.com")
 
 Shoe.create(name: "Louis Vuitton Trainers", description: "Red color mint condition", size: "12", price: "30", category: "Luxury", user_id: 2)
 Shoe.create(name: "Vans Old Skool 36", description: "Off White color", size: "7", price: "30", category: "Casual", user_id: 1)

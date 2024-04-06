@@ -19,33 +19,36 @@
     <br>
     <br>
   <% end %>
-  <h2>List of orders for <%= @shoe.name %></h2>
-  <ul>
-    <% @shoe.orders.each do |order| %>
-      <% user = User.where(id: order.user_id) %>
-      <% if order.shoe_id == @shoe.id %>
-      <li>Order ID: <%= order.id %>
-      <br>
-      From <%= user.first.first_name %> <%= user.first.last_name %>
-      <br>
-      Renting period: <%= order.from %> to <%= order.to %>
-      <br>
+  <% if @shoe.orders != [] %>
+    <h2>List of orders for <%= @shoe.name %>:</h2>
+    <ul>
+      <% @shoe.orders.each do |order| %>
+        <% user = User.where(id: order.user_id) %>
+        <% if order.shoe_id == @shoe.id %>
+        <li>Order ID: <%= order.id %>
+        <br>
+        From <%= user.first.first_name %> <%= user.first.last_name %>
+        <br>
+        Renting period: <%= order.from %> to <%= order.to %>
+        <br>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+  <br>
+  <% if @shoe.reviews != [] %>
+    <h2>List of references:</h2>
+    <ul>
+      <% @shoe.reviews.each do |review| %>
+        <li>
+        Content: <%= review.content %>
+        <br>
+        Rating: <%= review.rating %>
       </li>
       <% end %>
-    <% end %>
-  </ul>
-  <br>
-
-  <h2>List of references:</h2>
-  <ul>
-    <% @shoe.reviews.each do |review| %>
-      <li>
-      Content: <%= review.content %>
-      <br>
-      Rating: <%= review.rating %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
+  <% end %>
   <% if @orders != [] %>
   <%= link_to "Write your review!", new_order_review_path(@orders.last) %>
   <% end %>
