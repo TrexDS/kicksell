@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Your favourites list</h1>
+  <% @favourites.each do |favourite| %>
+    <% if favourite.user_id == current_user.id %>
+    <% shoe = Shoe.find(favourite.shoe_id) %>
+    <li>
+      <%= shoe.name %>
+    </li>
+    <% end %>
+  <% end %>
+</div>

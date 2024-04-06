@@ -7,6 +7,13 @@
     <li>Owner: <%= @user.first.first_name%></li>
   </ul>
 
+  <h2>Do you like this shoes?</h2>
+<%= simple_form_for [@shoe, @favourite] do |f|%>
+    <%= f.input :user_id, :as => :hidden, :input_html => {:value => current_user.id} %>
+    <%= f.input :shoe_id, :as => :hidden, :input_html => {:value => @shoe.id}%>
+    <%= f.submit value: "Add to favourites list" %>
+    <% end %>
+
   <% if @shoe.user_id == current_user.id %>
     <%= link_to "Edit shoes details", edit_shoe_path(@shoe) %>
     <br>
