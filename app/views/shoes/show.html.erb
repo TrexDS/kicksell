@@ -1,18 +1,52 @@
-<h1>The details of <%= @shoe.name %>:</h1>
-<ul>
-  <li>Name: <%= @shoe.name %></li>
-  <li>Description: <%= @shoe.description %></li>
-  <li>Price: <%= @shoe.price %> AUD</li>
-  <li>Owner: <%= @user.first.first_name%></li>
-</ul>
+<div class="container">
+  <h1>The details of <%= @shoe.name %>:</h1>
+  <ul>
+    <li>Name: <%= @shoe.name %></li>
+    <li>Description: <%= @shoe.description %></li>
+    <li>Price: <%= @shoe.price %> AUD/day</li>
+    <li>Owner: <%= @user.first.first_name%></li>
+  </ul>
 
-<% if @shoe.user_id == current_user.id %>
-  <%= link_to "Edit shoes details", edit_shoe_path(@shoe) %>
+  <% if @shoe.user_id == current_user.id %>
+    <%= link_to "Edit shoes details", edit_shoe_path(@shoe) %>
+    <br>
+    <%= link_to "Delete shoes",
+    shoe_path(@shoe),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+  <% else %>
+    <%= link_to "Do you want to rent them? Click here", new_shoe_order_path(@shoe) %>
+    <br>
+    <br>
+  <% end %>
+  <h2>List of orders for <%= @shoe.name %></h2>
+  <ul>
+    <% @shoe.orders.each do |order| %>
+      <% user = User.where(id: order.user_id) %>
+      <% if order.shoe_id == @shoe.id %>
+      <li>Order ID: <%= order.id %>
+      <br>
+      From <%= user.first.first_name %> <%= user.first.last_name %>
+      <br>
+      Renting period: <%= order.from %> to <%= order.to %>
+      <br>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
   <br>
-  <%= link_to "Delete shoes",
-  shoe_path(@shoe),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
-<% else %>
-  <%= link_to "Do you want to rent them? Click here", new_shoe_order_path(@shoe) %>
-<% end %>
+
+  <h2>List of references:</h2>
+  <ul>
+    <% @shoe.reviews.each do |review| %>
+      <li>
+      Content: <%= review.content %>
+      <br>
+      Rating: <%= review.rating %>
+    </li>
+    <% end %>
+  </ul>
+  <% if @orders != [] %>
+  <%= link_to "Write your review!", new_order_review_path(@orders.last) %>
+  <% end %>
+</div>

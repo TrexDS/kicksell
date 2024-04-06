@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_04_113040) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_06_001710) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +19,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_04_113040) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "from"
+    t.date "to"
     t.index ["shoe_id"], name: "index_orders_on_shoe_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_reviews_on_order_id"
   end
 
   create_table "shoes", force: :cascade do |t|
@@ -30,6 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_04_113040) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
+    t.string "size"
     t.index ["user_id"], name: "index_shoes_on_user_id"
   end
 
@@ -49,5 +62,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_04_113040) do
 
   add_foreign_key "orders", "shoes"
   add_foreign_key "orders", "users"
+  add_foreign_key "reviews", "orders"
   add_foreign_key "shoes", "users"
 end
