@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Your history of orders:</h1>
+  <% current_user.orders.each do |order| %>
+    <li>
+      Order ID: <%= order.id %>
+      <br>
+      From: <%= order.from %>
+      <br>
+      To: <%= order.to %>
+    </li>
+  <% end %>
+</div>

@@ -46,6 +46,9 @@ class ShoesController < ApplicationController
     redirect_to shoes_path, status: :see_other
   end
 
+  def my_orders
+  end
+
   private
 
   def shoe_params
