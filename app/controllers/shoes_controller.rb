@@ -7,8 +7,10 @@ class ShoesController < ApplicationController
   end
 
   def show
+    # raise
     # @shoe = Shoe.find(params[:id])
     @user = User.where(id: @shoe.user_id)
+    @orders = Order.where(shoe_id: @shoe.id, user_id: current_user.id)
     # raise
   end
 

@@ -1,6 +1,10 @@
-<%= simple_form_for @shoe do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h1>Need to change shoes details?</h1>
+  <%= simple_form_for @shoe do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.input :price %>
+    <%= f.submit %>
+  <% end %>
+</div>
