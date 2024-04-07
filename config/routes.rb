@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "favourites", to: "shoes#favourites", as: :favourites
   resources :shoes do
     resources :orders, only: [:new, :create]
-    resources :favourites, only: [:new, :create]
+    resources :favourites, only: [:new, :create, :destroy]
     collection do
       get :casual
       get :luxury
