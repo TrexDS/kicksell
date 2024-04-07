@@ -21,12 +21,12 @@ class ShoesController < ApplicationController
   end
 
   def create
-    raise
+    # raise
     # @shoe = current_user.shoes.build(shoes_params)
     @shoe = Shoe.new(shoe_params)
     @shoe.user = current_user
     if @shoe.save
-      redirect_to shoes_path
+      redirect_to shoe_path(@shoe)
     else
       render :new
     end
@@ -70,7 +70,7 @@ class ShoesController < ApplicationController
   private
 
   def shoe_params
-    params.require(:shoe).permit(:name, :description, :price)
+    params.require(:shoe).permit(:name, :description, :price, :size, :category, photos: [])
   end
 
   def shoe_list

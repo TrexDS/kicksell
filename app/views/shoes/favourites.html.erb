@@ -4,6 +4,9 @@
     <% if favourite.user_id == current_user.id %>
     <% shoe = Shoe.find(favourite.shoe_id) %>
     <li>
+      <% if shoe.photos.first %>
+        <span><%= cl_image_tag shoe.photos.first.key, height: 300, width: 400, crop: :fill %></span>
+      <% end %>
       <%= shoe.name %>
     </li>
     <% end %>
