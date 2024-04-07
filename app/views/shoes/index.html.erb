@@ -4,6 +4,9 @@
   <ul>
     <% @shoes.each do |shoe| %>
     <li>
+      <% if shoe.photos.first %>
+        <span><%= cl_image_tag shoe.photos.first.key, height: 300, width: 400, crop: :fill %></span>
+      <% end %>
       <%= link_to shoe.name, shoe_path(shoe) %>
     </li>
     <% end %>
