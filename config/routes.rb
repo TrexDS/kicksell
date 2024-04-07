@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   resources :shoes do
     resources :orders, only: [:new, :create]
     resources :favourites, only: [:new, :create]
+    collection do
+      get :casual
+      get :luxury
+      get :formal
+    end
   end
 
   resources :orders do

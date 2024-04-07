@@ -1,0 +1,6 @@
+<div class="container">
+  <h1>Casual shoes are listed here:</h1>
+  <% @shoes.each do |shoe| %>
+    <li>Name: <%= shoe.name %>, Price: <%= shoe.price %> AUD/per day</li>
+  <% end %>
+</div>

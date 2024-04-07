@@ -21,7 +21,7 @@ class ShoesController < ApplicationController
   end
 
   def create
-    # raise
+    raise
     # @shoe = current_user.shoes.build(shoes_params)
     @shoe = Shoe.new(shoe_params)
     @shoe.user = current_user
@@ -54,6 +54,19 @@ class ShoesController < ApplicationController
   def favourites
     @favourites = Favourite.all
   end
+
+  def casual
+    @shoes = Shoe.where(category: "Casual")
+  end
+
+  def luxury
+    @shoes = Shoe.where(category: "Luxury")
+  end
+
+  def formal
+    @shoes = Shoe.where(category: "Formal")
+  end
+
   private
 
   def shoe_params
