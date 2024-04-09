@@ -1,1 +1,65 @@
 // Specific CSS for your home-page
+
+
+
+.container-story{
+   display: flex;
+   border-radius: 20px;
+   border-color: black;
+   text-align: center;
+   flex-wrap: wrap;
+   text-emphasis-color: white;
+padding-left: 100px;
+padding-right: 100px;
+   padding-top: 30px;
+
+   padding-bottom: 30px;
+   margin: 50px;
+   justify-content: center;
+
+   background-color: rgb(205, 205, 205);
+   background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2022/04/copertina-1.jpg);
+   p {
+      color: rgb(58, 77, 2);
+      text-shadow: 1px 1px 1px rgba($color: #ececec, $alpha: 0.8);
+   }
+
+}
+
+
+
+.title{
+   text-align: center;
+
+   .abril-fatface-regular {
+      font-family: "Abril Fatface", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+
+}
+
+.card-container{
+   border-color: black;
+   box-shadow: 10px;
+   background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2022/04/copertina-1.jpg);
+   border-radius: 20px;
+   display: flex;
+   text-align: center;
+   justify-content: center;
+   margin: 50px;
+   padding: auto;
+   padding-left: 20px;
+   padding-right: 20px;
+   border: 20px;
+   flex-wrap: wrap;
+   background-color: rgb(205, 205, 205);
+}
+
+.card:hover{
+   background-color: rgb(95, 95, 95);
+   color: aliceblue;
+   transform: scale(1.05);
+   transition: all 1s ease;
+}

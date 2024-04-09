@@ -1,6 +1,10 @@
 class Shoe < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
-  validates :price, presence: true
+  belongs_to :user
+  has_many :orders, dependent: :destroy
+  has_many :reviews, through: :orders, dependent: :destroy
+  has_many :favourites
+  has_many_attached :photos
 
-  has_many :order_tags
+  validates :name, :description, :price, :category, :size, presence: true
+
 end
